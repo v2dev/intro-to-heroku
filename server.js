@@ -17,6 +17,7 @@ if (process.env.DATABASE_URL !== undefined) {
   console.log('VINEET DB reference ' + process.env.DATABASE_URL)
   pg.defaults.ssl = true;
 }else{
+  pg.defaults.ssl = true;
   console.log('VINEET DB reference undefined')
 }
 
@@ -107,11 +108,11 @@ app.get('/broker/:sfid', function(req, res) {
 */
 
 app.get( '/accounts', function(req, res) {
-  // client.query('SELECT * FROM ' + accountTable +  function(error, data) {
-  //   console.log('Vineet :: Data retrieved from server' + data)
-  //   res.json(data);
-  // });
-  res.json({"Hello" : "World"})
+  client.query('SELECT * FROM ' + accountTable +  function(error, data) {
+    console.log('Vineet :: Data retrieved from server' + data)
+    res.json(data);
+  });
+//  res.json({"Hello" : "World"})
 });
 
 
