@@ -107,14 +107,15 @@ app.get('/broker/:sfid', function(req, res) {
 */
 
 app.get( '/accounts', function(req, res) {
-  client.query('SELECT * FROM ' + accountTable +  function(error, data) {
-    console.log('Vineet :: Data retrieved from server' + data)
-    res.json(data);
-  });
+  // client.query('SELECT * FROM ' + accountTable +  function(error, data) {
+  //   console.log('Vineet :: Data retrieved from server' + data)
+  //   res.json(data);
+  // });
+  res.json({"Hello" : "World"})
 });
 
 
-var port = process.env.PORT || 8200;
+var port = process.env.PORT || 8300;
 //var port = process.env.PORT || 8200;
 
 app.listen(port);
