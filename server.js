@@ -22,7 +22,6 @@ if (process.env.DATABASE_URL !== undefined) {
 
 //connect to db
 var client = new pg.Client(connectionString);
-client.connect();
 
 //table name
 var accountTable = 'salesforce.account';
@@ -95,11 +94,13 @@ app.get('/broker', function(req, res) {
 });
 */
 
+
 app.get('/broker/:sfid', function(req, res) {
   client.query('SELECT * FROM ' + brokerTable + ' WHERE sfid = $1', [req.params.sfid], function(error, data) {
     res.json(data.rows[0]);
   });
 });
+
 
 app.get( function(req, res) {
   client.query('SELECT * FROM ' + accountTable +  function(error, data) {
