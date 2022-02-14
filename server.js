@@ -106,7 +106,7 @@ app.get('/broker/:sfid', function(req, res) {
 });
 */
 
-app.get( '/', function(req, res) {
+app.get( '/accounts', function(req, res) {
   client.query('SELECT * FROM ' + accountTable +  function(error, data) {
     console.log('Vineet :: Data retrieved from server' + data)
     res.json(data);
