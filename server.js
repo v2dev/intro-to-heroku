@@ -22,10 +22,10 @@ if (process.env.DATABASE_URL !== undefined) {
 
 //connect to db
 var client = new pg.Client(connectionString);
-client.host = 'ec2-18-215-8-186.compute-1.amazonaws.com'
-client.database = 'df1vjjcla4od5f'
-client.user = 'sqswklfxrepflp'
-client.password = 'faf953a77e258671c0c32c90a40900c207fe2489f42b0783e4e70483c1fbfcd2'
+client.host = 'ec2-18-215-8-186.compute-1.amazonaws.com';
+client.database = 'df1vjjcla4od5f';
+client.user = 'sqswklfxrepflp';
+client.password = 'faf953a77e258671c0c32c90a40900c207fe2489f42b0783e4e70483c1fbfcd2';
 
 client.connect();
 
@@ -119,4 +119,4 @@ var port = process.env.PORT || 5432;
 
 app.listen(port);
 
-console.log('Listening at: http://localhost:' + port);
+console.log('Listening at: ' + port);
