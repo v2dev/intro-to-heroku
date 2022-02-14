@@ -28,7 +28,7 @@ client.user = 'sqswklfxrepflp';
 client.password = 'faf953a77e258671c0c32c90a40900c207fe2489f42b0783e4e70483c1fbfcd2';
 
 client.connect();
-console.log('connected' , client)
+//console.log('connected' , client)
 //table name
 var accountTable = 'salesforce.account';
 
@@ -109,7 +109,7 @@ app.get('/broker/:sfid', function(req, res) {
 app.get( '/', function(req, res) {
   client.query('SELECT * FROM ' + accountTable +  function(error, data) {
     console.log('Vineet :: Data retrieved from server' + data)
-    res.json(data.rows[0]);
+    res.json(data);
   });
 });
 
