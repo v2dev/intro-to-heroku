@@ -11,7 +11,7 @@ app.use(express.static(path.join('www', 'build')));
 app.use(bodyParser.json());
 
 
-var connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/dreamhouse';
+var connectionString = process.env.DATABASE_URL || 'postgres://sqswklfxrepflp:faf953a77e258671c0c32c90a40900c207fe2489f42b0783e4e70483c1fbfcd2@ec2-18-215-8-186.compute-1.amazonaws.com:5432/df1vjjcla4od5f';
 
 if (process.env.DATABASE_URL !== undefined) {
   pg.defaults.ssl = true;
@@ -101,4 +101,4 @@ var port = process.env.PORT || 8200;
 
 app.listen(port);
 
-//console.log('Listening at: http://localhost:' + port);
+console.log('Listening at: http://localhost:' + port);
