@@ -5,8 +5,8 @@ var pg = require('pg');
 
 var app = express();
 
-app.use(express.static('www'));
-app.use(express.static(path.join('www', 'build')));
+// app.use(express.static('www'));
+// app.use(express.static(path.join('www', 'build')));
 
 app.use(bodyParser.json());
 
@@ -14,18 +14,28 @@ app.use(bodyParser.json());
 var connectionString = process.env.DATABASE_URL || 'postgres://sqswklfxrepflp:faf953a77e258671c0c32c90a40900c207fe2489f42b0783e4e70483c1fbfcd2@ec2-18-215-8-186.compute-1.amazonaws.com:5432/df1vjjcla4od5f';
 
 if (process.env.DATABASE_URL !== undefined) {
+  console.log('VINEET DB reference ' + process.env.DATABASE_URL)
   pg.defaults.ssl = true;
+}else{
+  console.log('VINEET DB reference undefined')
 }
 
+//connect to db
 var client = new pg.Client(connectionString);
 client.connect();
 
+//table name
+var accountTable = 'salesforce.account';
+
+/*
 var propertyTable = 'property__c';
 var favoriteTable = 'favorite__c';
 var brokerTable = 'broker__c';
-var accountTable = 'salesforce.account';
+*/
+
 
 // setup the demo data if needed
+/*
 client.query('SELECT * FROM salesforce.broker__c', function(error, data) {
   if (error !== null) {
     client.query('SELECT * FROM broker__c', function(error, data) {
@@ -43,8 +53,9 @@ client.query('SELECT * FROM salesforce.broker__c', function(error, data) {
     brokerTable = schema + 'broker__c';
   }
 });
+*/
 
-
+/*
 app.get('/property', function(req, res) {
   client.query('SELECT * FROM ' + propertyTable, function(error, data) {
     res.json(data.rows);
@@ -82,6 +93,7 @@ app.get('/broker', function(req, res) {
     res.json(data.rows);
   });
 });
+*/
 
 app.get('/broker/:sfid', function(req, res) {
   client.query('SELECT * FROM ' + brokerTable + ' WHERE sfid = $1', [req.params.sfid], function(error, data) {
@@ -97,7 +109,9 @@ app.get( function(req, res) {
 });
 
 
-var port = process.env.PORT || 8200;
+var port = process.env.PORT || 5432;
+
+//var port = process.env.PORT || 8200;
 
 app.listen(port);
 
