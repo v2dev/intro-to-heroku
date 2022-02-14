@@ -23,6 +23,7 @@ client.connect();
 var propertyTable = 'property__c';
 var favoriteTable = 'favorite__c';
 var brokerTable = 'broker__c';
+var accountTable = 'salesforce.account';
 
 // setup the demo data if needed
 client.query('SELECT * FROM salesforce.broker__c', function(error, data) {
@@ -87,6 +88,14 @@ app.get('/broker/:sfid', function(req, res) {
     res.json(data.rows[0]);
   });
 });
+
+app.get( function(req, res) {
+  client.query('SELECT * FROM ' + accountTable +  function(error, data) {
+    console.log('Vineet :: Data retrieved from server' + data)
+    res.json(data.rows[0]);
+  });
+});
+
 
 var port = process.env.PORT || 8200;
 

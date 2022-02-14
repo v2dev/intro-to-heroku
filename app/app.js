@@ -9,43 +9,112 @@ import {FavoriteListPage} from './pages/favorite-list/favorite-list';
 import {PropertyService} from './services/property-service';
 import {BrokerService} from './services/broker-service';
 
-@App({
-    templateUrl: 'build/app.html',
-    config: {
-        mode: "ios"
-    },
-    queries: {
-        nav: new ViewChild('content')
-    },
-    providers: [HTTP_PROVIDERS, PropertyService, BrokerService]
-})
-class MyApp {
+import React, {Component} from 'react'
+import { StyleSheet, Text, View, Button, ActivityIndicator, Alert } from 'react-native';
+import { StatusBar } from 'expo-status-bar';
+import axios from 'axios';
 
-    static get parameters() {
-        return [[Platform]];
+//Vineet
+export default class App extends Component {
+    constructor () {
+      super();
+      this.state = {isLoading : true};
+      
     }
+  
+    async componentDidMount(){
+      console.log('VINEET component did mount')
 
-    constructor(platform) {
-
-        this.platform = platform;
-
-        this.pages = [
-            {title: 'Welcome', component: WelcomePage, icon: "bookmark"},
-            {title: 'Properties', component: PropertyListPage, icon: "home"},
-            {title: 'Brokers', component: BrokerListPage, icon: "people"},
-            {title: 'Favorites', component: FavoriteListPage, icon: "star"}
-        ];
-
-        this.rootPage = WelcomePage;
-        this.initializeApp();
+  }
+  
+  
+    sendData(){
+      Alert.alert(
+        'Send Data')
     }
-
-    initializeApp() {
+  
+    connect(){
+  
+  
+      Alert.alert(
+        'Connect')
+    }
+  
+  
+    retrieveData(){
+      axios.get('https://jsonplaceholder.typicode.com/users')
+      .then((response) => {
+              this.setState({
+                isLoading : false,
+                message : JSON.stringify(response.data[0].username)
+            });
+        }).catch((error) => {
+               console.error(error);
+           })  
+    }
+  
+    render(){
+  
+      if(this.state.isLoading){
+        return (
+          <View style={styles.container}>
+  
+  
+            <View style={{margin: 10, padding: 20}}>
+              <Button  title="Send Data"
+                onPress={() => this.sendData()}
+            /> 
+          </View>
         
+          <View style={{marginVertical: 10}}>
+            <Button  title="Retrieve Data"
+                onPress={() => this.retrieveData()}
+            />
+          </View>
+            <StatusBar style="auto" />
+        </View>
+        );
+      }
+  
+  
+        return (
+          <View style={styles.container}>
+  
+            <View style={{margin: 10, padding: 20}}>
+              <Button  title="Send Data"
+                onPress={() => this.sendData()}
+            /> 
+          </View>
+        
+          <View style={{marginVertical: 10}}>
+            <Button  title="Retrieve Data"
+                onPress={() => this.retrieveData()}
+            />
+          </View>
+            <StatusBar style="auto" />
+            <Text style={styles.header}>Result: </Text>
+            <Text>{this.state.message}</Text>
+        </View>
+        );
     }
-
-    openPage(page) {
-        this.nav.setRoot(page.component);
-    }
-
-}
+  }
+  const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      backgroundColor: '#fff',
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+    button: {
+      marginBottom: 40,
+      padding: 30
+  },
+  header: {
+    marginBottom: 20,
+    color: 'green',
+    fontSize:20,
+    padding: 10,
+    justifyContent:'flex-start'
+  },
+  });
+  
