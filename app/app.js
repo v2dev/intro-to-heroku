@@ -42,7 +42,7 @@ class MyApp {
     }
 
     initializeApp() {
-        
+        console.log('VINEET:: InitializeApp')
     }
 
     openPage(page) {

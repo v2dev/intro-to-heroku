@@ -28,7 +28,7 @@ client.user = 'sqswklfxrepflp';
 client.password = 'faf953a77e258671c0c32c90a40900c207fe2489f42b0783e4e70483c1fbfcd2';
 
 client.connect();
-
+console.log('connected' , client)
 //table name
 var accountTable = 'salesforce.account';
 
@@ -114,7 +114,7 @@ app.get( '/', function(req, res) {
 });
 
 
-var port = process.env.PORT || 5432;
+var port = process.env.PORT || 8200;
 //var port = process.env.PORT || 8200;
 
 app.listen(port);
