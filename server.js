@@ -64,7 +64,7 @@ const config = {
 
 var client = new pg.Client(config);
 
-client.connect();
+//client.connect();
 console.log('connected' , client)
 ///////////////
 
@@ -112,7 +112,7 @@ app.get('/broker/:sfid', function(req, res) {
 */
 
 app.get( '/accounts', function(req, res) {
-  client.query('SELECT * FROM ' + accountTable +  function(error, data) {
+  client.query('SELECT * FROM salesforce.account ' ,  function(error, data) {
     if(error != null){
       console.log('Vineet :: Data retrieved from server' + data)
       res.json(data);
