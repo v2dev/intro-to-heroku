@@ -119,7 +119,7 @@ app.get('/broker/:sfid', function(req, res) {
 
 
 app.get( '/accounts', function(req, res) {
-  client.query('SELECT * FROM salesforce.account' ,  function(error, data) {
+  client.query('SELECT name FROM salesforce.account' ,  function(error, data) {
     if(error != null){
       console.log('Vineet :: Data retrieved from server' + data)
       res.json(data);
