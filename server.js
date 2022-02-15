@@ -130,7 +130,7 @@ app.get( '/accounts', function(req, res) {
 });
 
 app.post( '/addname', function(req, res) {
-  client.query(`INSERT INTO salesforce.accounts (name) VALUES ('Robert');`);
+  client.query(`INSERT INTO salesforce.account (name) VALUES ('Robert');`);
 });
 
 
