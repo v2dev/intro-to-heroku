@@ -37,7 +37,13 @@ module.exports = function(client) {
    property__c CHARACTER VARYING(18) REFERENCES property__c(sfid)
   );`);
 
+  client.query(`CREATE TABLE accounts (
+    name CHARACTER VARYING(18)
+   );`);  
 
+
+  client.query(`INSERT INTO accounts (name) VALUES ('Robert');`);
+  
   client.query(`INSERT INTO broker__c (email__c, phone__c, name, mobile_phone__c, sfid, title__c, picture__c) VALUES ('caroline@ionicrealty.com', '617-244-3672', 'Caroline Kingsley', '617-244-3672', 'a0036000003SsJwAAK', 'Senior Broker', 'https://s3-us-west-1.amazonaws.com/sfdc-demo/people/caroline_kingsley.jpg');`);
   client.query(`INSERT INTO broker__c (email__c, phone__c, name, mobile_phone__c, sfid, title__c, picture__c) VALUES ('jen@ionicrealty.com', '617-244-3672', 'Jennifer Wu', '617-244-3672', 'a0036000003SsJzAAK', 'Senior Broker', 'https://s3-us-west-1.amazonaws.com/sfdc-demo/people/jennifer_wu.jpg');`);
   client.query(`INSERT INTO broker__c (email__c, phone__c, name, mobile_phone__c, sfid, title__c, picture__c) VALUES ('michael@ionicrealty.com', '617-244-3672', 'Michael Jones', '617-244-3672', 'a0036000003SsJxAAK', 'Senior Broker', 'https://s3-us-west-1.amazonaws.com/sfdc-demo/people/michael_jones.jpg');`);
