@@ -124,7 +124,6 @@ app.get( '/accounts', function(req, res) {
       console.log('Vineet :: Data retrieved from server' + data)
       res.json(data);
   }else{
-//    console.log("Server :: Error " + error + " Data =>  " + data )
     res.json({"Vineet :: Data Value => " : data  + "Error => " + error})
   }
   });    
