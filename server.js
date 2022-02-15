@@ -117,9 +117,15 @@ app.get('/broker/:sfid', function(req, res) {
 //   res.json(template );
 // })
 
-app.post( '/accounts', function(req, res) {
-  const template = 'insert into salesforce.account (name) values($1)';
-   client.query(template, ['Robert']);
+// app.post( '/accounts', function(req, res) {
+//   const template = 'insert into salesforce.account (name) values($1)';
+//    client.query(template, ['Robert']);
+// });
+
+app.post('/adddata', function(req, res) {
+  client.query('INSERT INTO ' + salesforce.account + ' (name) VALUES ($1)', ['Robert'], function(error, data) {
+    res.json(data);
+  });
 });
 
 
