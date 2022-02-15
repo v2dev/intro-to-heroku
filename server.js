@@ -8,6 +8,7 @@ var app = express();
 
 app.use(bodyParser.json({ type: "application/json" }));
 app.use(bodyParser.urlencoded({ extended: true }));
+
 // app.use(express.static('www'));
 // app.use(express.static(path.join('www', 'build')));
 
@@ -20,7 +21,7 @@ app.listen(port);
 
 console.log('Vineet :: Listening at: ' + port);
 
-//var connectionString = process.env.DATABASE_URL || 'postgres://sqswklfxrepflp:faf953a77e258671c0c32c90a40900c207fe2489f42b0783e4e70483c1fbfcd2@ec2-18-215-8-186.compute-1.amazonaws.com:5432/df1vjjcla4od5f';
+var connectionString = process.env.DATABASE_URL || 'postgres://sqswklfxrepflp:faf953a77e258671c0c32c90a40900c207fe2489f42b0783e4e70483c1fbfcd2@ec2-18-215-8-186.compute-1.amazonaws.com:5432/df1vjjcla4od5f';
 
 if (process.env.DATABASE_URL !== undefined) {
   console.log('VINEET DB reference ' + process.env.DATABASE_URL)
@@ -31,7 +32,7 @@ if (process.env.DATABASE_URL !== undefined) {
 }
 
 //connect to db
-//var client = new pg.Client(connectionString);
+var client = new pg.Client(connectionString);
 
 //heroku-connect-v2demo
 
@@ -42,31 +43,31 @@ if (process.env.DATABASE_URL !== undefined) {
 
 //v2testpoc-2403
 
-// client.host = 'ec2-18-215-8-186.compute-1.amazonaws.com';
-// client.database = 'df1vjjcla4od5f';
-// client.user = 'sqswklfxrepflp';
-// client.password = 'faf953a77e258671c0c32c90a40900c207fe2489f42b0783e4e70483c1fbfcd2';
+client.host = 'ec2-18-215-8-186.compute-1.amazonaws.com';
+client.database = 'df1vjjcla4od5f';
+client.user = 'sqswklfxrepflp';
+client.password = 'faf953a77e258671c0c32c90a40900c207fe2489f42b0783e4e70483c1fbfcd2';
 
-// client.connect();
+ client.connect();
 // console.log('connected' , client)
 
 //table name
 var accountTable = 'salesforce.account';
 
 
-////////////////
-const config = {
-  host = 'ec2-18-215-8-186.compute-1.amazonaws.com',
-  database = 'df1vjjcla4od5f',
-  user = 'sqswklfxrepflp',
-  password = 'faf953a77e258671c0c32c90a40900c207fe2489f42b0783e4e70483c1fbfcd2'
-};
+// ////////////////
+// const config = {
+//   host = 'ec2-18-215-8-186.compute-1.amazonaws.com',
+//   database = 'df1vjjcla4od5f',
+//   user = 'sqswklfxrepflp',
+//   password = 'faf953a77e258671c0c32c90a40900c207fe2489f42b0783e4e70483c1fbfcd2'
+// };
 
-var client = new pg.Client(config);
+// var client = new pg.Client(config);
 
-client.connect();
-console.log('connected' , client)
-///////////////
+// client.connect();
+// console.log('connected' , client)
+// ///////////////
 
 
 
@@ -116,16 +117,19 @@ app.get('/broker/:sfid', function(req, res) {
 //   res.json(template );
 // })
 
+
 app.get( '/accounts', function(req, res) {
-  client.query('SELECT * FROM salesforce.account ' ,  function(error, data) {
-    if(error != null){
-      console.log('Vineet :: Data retrieved from server' + data)
-      res.json(data);
-      //res.json({"Hello" : "World"})
-  }else{
-    res.json({"Vineet :: Hello" : "else condition"})
-  }
-  });    
+  
+  res.json({"Vineet :: Hello" : "else condition"})
+  // client.query('SELECT * FROM salesforce.account ' ,  function(error, data) {
+  //   if(error != null){
+  //     console.log('Vineet :: Data retrieved from server' + data)
+  //     res.json(data);
+  //     //res.json({"Hello" : "World"})
+  // }else{
+  //   res.json({"Vineet :: Hello" : "else condition"})
+  // }
+  // });    
 });
 
 
