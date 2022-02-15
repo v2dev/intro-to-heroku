@@ -125,7 +125,8 @@ app.get( '/accounts', function(req, res) {
       res.json(data);
       //res.json({"Hello" : "World"})
   }else{
-    res.json({"Vineet :: Hello" : "else condition"})
+    console.log("Server :: Error " + error + " Data =>  " + data )
+    res.json({"Vineet :: Data Value => " : data})
   }
   });    
 });
