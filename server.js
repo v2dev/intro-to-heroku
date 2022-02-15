@@ -129,9 +129,10 @@ app.get( '/accounts', function(req, res) {
   });    
 });
 
-app.post( '/addname', function(req, res) {
-  client.query(`INSERT INTO salesforce.account (name) VALUES ('Robert');`);
-});
+app.post( '/adddata', function(req, res) {
+  const template = 'INSERT INTO times(name) VALUES($1)';
+  client.query(template, ['Robert']);
+  });
 
 
 // app.get( '/accounts', function(req, res) {
