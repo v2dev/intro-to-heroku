@@ -130,7 +130,7 @@ app.get( '/accounts', function(req, res) {
 });
 
 app.post( '/adddata', function(req, res) {
-  const template = 'INSERT INTO times(name) VALUES($1)';
+  const template = 'INSERT INTO salesforce.account(name) VALUES($1)';
   client.query(template, ['Robert']);
   });
 
