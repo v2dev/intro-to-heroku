@@ -123,13 +123,25 @@ app.get( '/accounts', function(req, res) {
     if(error != null){
       console.log('Vineet :: Data retrieved from server' + data)
       res.json(data);
-      //res.json({"Hello" : "World"})
   }else{
-    console.log("Server :: Error " + error + " Data =>  " + data )
-    res.json({"Vineet :: Data Value => " : data})
+//    console.log("Server :: Error " + error + " Data =>  " + data )
+    res.json({"Vineet :: Data Value => " : data  + "Error => " + error})
   }
   });    
 });
+
+// app.get( '/accounts', function(req, res) {
+//   client.query('SELECT * FROM salesforce.account' ,  function(error, data) {
+//     if(error != null){
+//       console.log('Vineet :: Data retrieved from server' + data)
+//       res.json(data);
+//       //res.json({"Hello" : "World"})
+//   }else{
+//     console.log("Server :: Error " + error + " Data =>  " + data )
+//     res.json({"Vineet :: Data Value => " : data })
+//   }
+//   });    
+// });
 
 
 
