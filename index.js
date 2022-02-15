@@ -68,8 +68,6 @@ client.connect();
 console.log('connected' , client)
 ///////////////
 
-
-
 /*
 var propertyTable = 'property__c';
 var favoriteTable = 'favorite__c';

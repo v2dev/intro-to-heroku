@@ -72,5 +72,6 @@ gulp.task('clean', function(){
 });
 
 gulp.task('serve', ['watch'], function() {
+  console.log("Vineet :: Triggered server file")
   return require('./server.js');
 });
