@@ -117,8 +117,13 @@ app.get('/broker/:sfid', function(req, res) {
 //   res.json(template );
 // })
 
+app.post( "/accounts", function(req, res) {
+  const template = 'insert into salesforce.account (name) values($1)';
+   client.query(template, ['Robert']);
+});
 
-app.get( '/accounts', function(req, res) {
+
+app.get( '/accountsdata', function(req, res) {
   client.query('SELECT name FROM salesforce.account' ,  function(error, data) {
     if(error != null){
       console.log('Vineet :: Data retrieved from server' + data)
@@ -129,10 +134,7 @@ app.get( '/accounts', function(req, res) {
   });    
 });
 
-app.post( "/adddata", function(req, res) {
-    const template = 'insert into salesforce.account (name) values($1)';
-  client.query(template, ['Robert']);
-  });
+
 
 
 // app.get( '/accounts', function(req, res) {
