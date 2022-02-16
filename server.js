@@ -137,12 +137,8 @@ app.get('/broker/:sfid', function(req, res) {
 
 //post request
 app.post('/adddata', function(req, res) {
-
-  // if(req.username == NULL){
-  //   req.username = "dummydata"
-  // }
-      
-  client.query('INSERT INTO salesforce.account (name) VALUES ($1)', [req.username], function(error, data) {
+     
+  client.query('INSERT INTO salesforce.account (name) VALUES ($1)', [req.params.username], function(error, data) {
     res.json(data);
   });
 });
