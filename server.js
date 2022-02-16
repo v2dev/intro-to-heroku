@@ -132,10 +132,10 @@ app.post('/adddata', function(req, res) {
 app.get( '/accountsdata', function(req, res) {
   client.query('SELECT name FROM salesforce.account' ,  function(error, data) {
     if(error != null){
-      console.log('Vineet :: Data retrieved from server' + data)
+      console.log(data)
       res.json(data);
   }else{
-    res.json({"Vineet :: Data Value => " : data  })
+    res.json({data})
   }
   });    
 });
