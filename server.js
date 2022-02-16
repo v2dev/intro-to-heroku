@@ -129,14 +129,18 @@ app.get('/broker/:sfid', function(req, res) {
 // });
 
 
-app.post('/adddata1', function(req, res) {
-  client.query('INSERT INTO salesforce.account (name) VALUES ($1)', ['Vineet Kumar'], function(error, data) {
-    res.json(data);
-  });
-});
+// app.post('/adddata', function(req, res) {
+//   client.query('INSERT INTO salesforce.account (name) VALUES ($1)', ['Vineet Kumar'], function(error, data) {
+//     res.json(data);
+//   });
+// });
 
 //post request
 app.post('/adddata', function(req, res) {
+  if(req.username == NULL){
+    req.username = "dummydata"
+  }
+      
   client.query('INSERT INTO salesforce.account (name) VALUES ($1)', [req.username], function(error, data) {
     res.json(data);
   });
