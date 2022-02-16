@@ -138,7 +138,7 @@ app.get('/broker/:sfid', function(req, res) {
 //post request
 app.post('/adddata', function(req, res) {
      
-  client.query('INSERT INTO salesforce.account (name) VALUES ($1)', [req.params.username], function(error, data) {
+  client.query('INSERT INTO salesforce.account (name) VALUES ($1)', [req.body.username], function(error, data) {
     res.json(data);
   });
 });
