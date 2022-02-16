@@ -122,11 +122,19 @@ app.get('/broker/:sfid', function(req, res) {
 //    client.query(template, ['Robert']);
 // });
 
+// app.post('/favorite', function(req, res) {
+//   client.query('INSERT INTO ' + favoriteTable + ' (property__c) VALUES ($1)', [req.body.property__c], function(error, data) {
+//     res.json(data);
+//   });
+// });
+
 app.post('/adddata', function(req, res) {
-  client.query('INSERT INTO salesforce.account (name) VALUES ($1)', ['Robert'], function(error, data) {
+  client.query('INSERT INTO salesforce.account (name) VALUES ($1)', [req.user], function(error, data) {
     res.json(data);
   });
 });
+
+
 
 
 app.get( '/accountsdata', function(req, res) {
