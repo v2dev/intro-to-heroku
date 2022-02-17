@@ -82,7 +82,7 @@ app.get( '/accountsdata', function(req, res) {
 
 app.delete('/deletedata/', function(req, res) {
 
-  console.log('Delete query_5 ' + req)
+  console.log('Delete query_5 ' + JSON.stringify(req))
   console.log('Delete query_1 ' + req.username)
   console.log('Delete query_2 ' + req.body.username)
   console.log('Delete query_3 ' + req.params.username)
