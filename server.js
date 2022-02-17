@@ -53,6 +53,23 @@ app.post('/adddata', function(req, res) {
   });
 });
 
+app.delete('/deletedata/', function(req, res) {
+  //console.log('Delete query_2 ' + req.body.username)
+
+  //Query to delete a record  
+  client.query('DELETE FROM salesforce.account WHERE name = $1', [req.body.username], function(error, data) {
+    res.json(data);
+  });
+});
+
+app.put('/updatedata/', function(req, res) {
+    //  console.log('update query_2 Old name ==> ' + req.body.oldname) 
+    //Query to update a record
+    client.query('UPDATE salesforce.account SET name = $1 WHERE name = $2', [req.body.newname, req.body.oldname ], function(error, data) {
+    res.json(data);
+  });
+});
+
 
 //Get request
 app.get( '/accountsdata', function(req, res) {
@@ -80,32 +97,6 @@ app.get( '/accountsdata', function(req, res) {
 //   });    
 // });
 
-app.delete('/deletedata/', function(req, res) {
-  console.log('Delete query_2 ' + req.body.username)
-  //  console.log('Delete query_1 ' + req.username)
-  // console.log('Delete query_3 ' + req.params.username)
-  // console.log('Delete query_4 ' + req.query.username)
-  // console.log('Delete query_5 ' + req)
-  // console.log('Delete query_6 ' + req.data.username)
-  
-  client.query('DELETE FROM salesforce.account WHERE name = $1', [req.body.username], function(error, data) {
-    res.json(data);
-  });
-});
 
-app.put('/updatedata/', function(req, res) {
-     console.log('update query_2 Old name ==> ' + req.body.oldname)
-     console.log('update query_2 updated name ==> ' + req.body.newname)
-
-    //  console.log('Delete query_1 ' + req.oldname)
-    //  console.log('Delete query_3 ' + req.params.oldname)
-  //  console.log('Delete query_4 ' + req.query.oldname)
-  //  console.log('Delete query_5 ' + req)
-//    console.log('Delete query_6 ' + req.data.oldname)
-  
-  client.query('UPDATE salesforce.account SET name = $1 WHERE name = $2', [req.body.newname, req.body.oldname ], function(error, data) {
-    res.json(data);
-  });
-});
 
 
