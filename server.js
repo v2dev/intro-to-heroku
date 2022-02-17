@@ -53,23 +53,23 @@ app.post('/adddata', function(req, res) {
   });
 });
 
-// app.delete('/deletedata/', function(req, res) {
-//   //console.log('Delete query_2 ' + req.body.username)
-
-//   //Query to delete a record  
-//   client.query('DELETE FROM salesforce.account WHERE name = $1', [req.body.username], function(error, data) {
-//     res.json(data);
-//   });
-// });
-
 app.delete('/deletedata/', function(req, res) {
   //console.log('Delete query_2 ' + req.body.username)
 
   //Query to delete a record  
-  client.query('DELETE FROM ' + accountTable + ' WHERE name is null', function(error, data) {
+  client.query('DELETE FROM ' + accountTable + ' WHERE name = $1', [req.body.username], function(error, data) {
     res.json(data);
   });
 });
+
+// app.delete('/deletedata/', function(req, res) {
+//   //console.log('Delete query_2 ' + req.body.username)
+
+//   //Query to delete a record  
+//   client.query('DELETE FROM ' + accountTable + ' WHERE name is null', function(error, data) {
+//     res.json(data);
+//   });
+// });
 
 
 app.put('/updatedata/', function(req, res) {
