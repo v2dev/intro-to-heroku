@@ -48,24 +48,34 @@ var accountTable = 'salesforce.account';
 
 //post request
 app.post('/adddata', function(req, res) {
-  client.query('INSERT INTO salesforce.account (name) VALUES ($1)', [req.body.username], function(error, data) {
+  client.query('INSERT INTO ' + accountTable + ' (name) VALUES ($1)', [req.body.username], function(error, data) {
     res.json(data);
   });
 });
+
+// app.delete('/deletedata/', function(req, res) {
+//   //console.log('Delete query_2 ' + req.body.username)
+
+//   //Query to delete a record  
+//   client.query('DELETE FROM salesforce.account WHERE name = $1', [req.body.username], function(error, data) {
+//     res.json(data);
+//   });
+// });
 
 app.delete('/deletedata/', function(req, res) {
   //console.log('Delete query_2 ' + req.body.username)
 
   //Query to delete a record  
-  client.query('DELETE FROM salesforce.account WHERE name = $1', [req.body.username], function(error, data) {
+  client.query('DELETE FROM ' + accountTable + ' WHERE name is null', function(error, data) {
     res.json(data);
   });
 });
 
+
 app.put('/updatedata/', function(req, res) {
     //  console.log('update query_2 Old name ==> ' + req.body.oldname) 
     //Query to update a record
-    client.query('UPDATE salesforce.account SET name = $1 WHERE name = $2', [req.body.newname, req.body.oldname ], function(error, data) {
+    client.query('UPDATE ' + accountTable + ' SET name = $1 WHERE name = $2', [req.body.newname, req.body.oldname ], function(error, data) {
     res.json(data);
   });
 });
@@ -73,7 +83,7 @@ app.put('/updatedata/', function(req, res) {
 
 //Get request
 app.get( '/accountsdata', function(req, res) {
-  client.query('SELECT name FROM salesforce.account' ,  function(error, data) {
+  client.query('SELECT name FROM ' + accountTable ,  function(error, data) {
     if(error != null){
       console.log(data)
       res.json(data);
