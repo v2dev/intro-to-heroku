@@ -81,7 +81,7 @@ app.get( '/accountsdata', function(req, res) {
 // });
 
 app.delete('/deletedata/', function(req, res) {
-  client.query('DELETE FROM salesforce.account WHERE name = $1', ['Robin'], function(error, data) {
+  client.query('DELETE FROM salesforce.account WHERE name = $1', [req.username], function(error, data) {
     res.json(data);
   });
 });
