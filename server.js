@@ -81,15 +81,27 @@ app.get( '/accountsdata', function(req, res) {
 // });
 
 app.delete('/deletedata/', function(req, res) {
-
-//  console.log('Delete query_1 ' + req.username)
   console.log('Delete query_2 ' + req.body.username)
+  //  console.log('Delete query_1 ' + req.username)
   // console.log('Delete query_3 ' + req.params.username)
   // console.log('Delete query_4 ' + req.query.username)
   // console.log('Delete query_5 ' + req)
   // console.log('Delete query_6 ' + req.data.username)
   
   client.query('DELETE FROM salesforce.account WHERE name = $1', [req.body.username], function(error, data) {
+    res.json(data);
+  });
+});
+
+app.put('/updatedata/', function(req, res) {
+  console.log('update query_2 ' + req.body.oldname)
+  //  console.log('Delete query_1 ' + req.username)
+  // console.log('Delete query_3 ' + req.params.username)
+  // console.log('Delete query_4 ' + req.query.username)
+  // console.log('Delete query_5 ' + req)
+  // console.log('Delete query_6 ' + req.data.username)
+  
+  client.query('UPDATE salesforce.account SET name = $1 WHERE name = $2', [req.body.newname, req.body.oldname ], function(error, data) {
     res.json(data);
   });
 });
