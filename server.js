@@ -94,14 +94,14 @@ app.delete('/deletedata/', function(req, res) {
 });
 
 app.put('/updatedata/', function(req, res) {
-  // console.log('update query_2 ' + req.body.oldname)
-  //   console.log('Delete query_1 ' + req.oldname)
-  //  console.log('Delete query_3 ' + req.params.oldname)
+     console.log('update query_2 ' + req.body.oldname)
+     console.log('Delete query_1 ' + req.oldname)
+     console.log('Delete query_3 ' + req.params.oldname)
   //  console.log('Delete query_4 ' + req.query.oldname)
   //  console.log('Delete query_5 ' + req)
-  //  console.log('Delete query_6 ' + req.data.oldname)
+    console.log('Delete query_6 ' + req.data.oldname)
   
-  client.query('UPDATE salesforce.account SET name = $1 WHERE name = $2', ["Taylor", "Anil" ], function(error, data) {
+  client.query('UPDATE salesforce.account SET name = $1 WHERE name = $2', [req.body.newname, req.body.oldname ], function(error, data) {
     res.json(data);
   });
 });
