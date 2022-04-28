@@ -10,7 +10,7 @@ app.use(bodyParser.json({ type: "application/json" }));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-var port = process.env.PORT || 5432;
+var port = process.env.PORT || 1000;
 
 app.listen(port);
 
