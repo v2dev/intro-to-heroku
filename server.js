@@ -31,9 +31,9 @@ var client = new pg.Client(connectionString);
 
 //v2testpoc-2403
 client.host = 'ec2-18-215-8-186.compute-1.amazonaws.com';
-client.database = 'df1vjjcla4od5f';
-client.user = 'sqswklfxrepflp';
-client.password = 'faf953a77e258671c0c32c90a40900c207fe2489f42b0783e4e70483c1fbfcd2';
+client.database = 'abcd7777abcd';
+client.user = 'jjjjlfxrepflp';
+client.password = 'faf953a77e258671c0c32207fe2489f42b0783e4e70483c1fbfcd2';
 
  client.connect();
 
